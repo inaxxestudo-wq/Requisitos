@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAC (Gestão de Ativos do CCT) - PITCH</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #FFFFFF;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2B6CB0 100%);
+            color: #FFFFFF;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+        
+        header img {
+            max-width: 350px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        /* Navegação */
+        nav {
+            background-color: #EBF8FF;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 3px solid #2B6CB0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav a {
+            color: #1A365D;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #2B6CB0;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Seções */
+        section {
+            margin-bottom: 60px;
+            padding: 40px;
+            background-color: #F7FAFC;
+            border-left: 5px solid #2B6CB0;
+            border-radius: 8px;
+        }
+        
+        section h2 {
+            color: #1A365D;
+            font-size: 36px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        section h2::before {
+            content: '';
+            width: 8px;
+            height: 35px;
+            background-color: #2B6CB0;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        
+        section h3 {
+            color: #2B6CB0;
+            font-size: 22px;
+            margin: 20px 0 10px 0;
+        }
+        
+        section p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            background-color: #FFFFFF;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid #4299E1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h4 {
+            color: #1A365D;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .card p {
+            color: #333333;
+            font-size: 14px;
+        }
+        
+        /* Highlight */
+        .highlight {
+            background-color: #EBF8FF;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2B6CB0;
+        }
+        
+        .highlight strong {
+            color: #2B6CB0;
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background-color: #2B6CB0;
+            color: #FFFFFF;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 5px 5px 5px 0;
+        }
+        
+        /* Demo Placeholder */
+        .demo-placeholder {
+            background: linear-gradient(135deg, #EBF8FF 0%, #EDF2F7 100%);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            color: #1A365D;
+            border: 2px dashed #4299E1;
+            margin: 20px 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1A365D;
+            color: #FFFFFF;
+            padding: 30px;
+            margin-top: 60px;
+        }
+        
+        footer img {
+            max-width: 150px;
+            height: auto;
+        }
+        
+        footer div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        /* Lista */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 36px;
+            }
+            
+            section {
+                padding: 20px;
+            }
+            
+            nav a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📦 GAC - Gestão de Ativos do CCT</h1>
+        <p>Plataforma digital integrada a identificadores físicos para controle e rastreabilidade de equipamentos.</p>
+    </header>
+    
+    <nav>
+        <a href="#problema">Problema</a>
+        <a href="#publico">Público-alvo</a>
+        <a href="#solucao">Solução</a>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#prototipo">Protótipo</a>
+        <a href="#beneficios">Benefícios</a>
+    </nav>
+    
+    <div class="container">
+        
+        <section id="problema">
+            <h2>Problema</h2>
+            
+            <h3>Desafios Principais</h3>
+            <p>O CCT disponibiliza projetores, chaves e outros equipamentos essenciais para as aulas, mas o fluxo operacional atual é fortemente impactado por gargalos manuais e pela ausência de uma centralização digitalizada de informações.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>📝 Controles Manuais</h4>
+                    <p>Processo de empréstimo e devolução baseado em registros em papel e anotações suscetíveis a erros.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>🗣️ Comunicação Verbal</h4>
+                    <p>Fluxos informais de transferência de posse de itens sem qualquer histórico ou registro formal.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>🔍 Dificuldade de Identificação</h4>
+                    <p>Obstáculo constante para localizar e saber quem é o responsável atual por um determinado ativo circulante.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>❌ Estado de Conservação</h4>
+                    <p>Total ausência de registros padronizados quanto às condições físicas e integridade dos itens retirados.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>⚠️ Risco de Perda ou Danos</h4>
+                    <p>Alta vulnerabilidade a extravios de hardware e acessórios sem uma responsabilização clara e inequívoca.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>⚙️ Sobrecarga Operacional</h4>
+                    <p>Excesso de retrabalho e esforço burocrático manual concentrado sobre os funcionários da recepção do CCT.</p>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <strong>Impacto:</strong> A dispersão de registros e a falta de padronização geram atrasos no início das aulas, perdas recorrentes de patrimônio e ineficiência severa na gestão diária dos materiais acadêmicos.
+            </div>
+        </section>
+        
+        <section id="publico">
+            <h2>Público-alvo</h2>
+            
+            <h3>Personas Principais</h3>
+            
+            <div class="card" style="margin-bottom: 20px;">
+                <h4>👥 Professor do CCT</h4>
+                <p><strong>Descrição:</strong> Docente que necessita rotineiramente de projetores, adaptadores e chaves para conduzir suas aulas.</p>
+                <p><strong>Necessidade:</strong> Retirar e devolver equipamentos de forma ágil, prática e transparente diretamente através de seu smartphone.</p>
+                <span class="badge">Usuário Final</span>
+            </div>
+            
+            <div class="card" style="margin-bottom: 20px;">
+                <h4>👥 Atendente / Equipe do CCT</h4>
+                <p><strong>Descrição:</strong> Funcionário responsável pelo atendimento na recepção e suporte logístico dos materiais.</p>
+                <p><strong>Necessidade:</strong> Controlar o inventário em tempo real, mitigando erros operacionais e eliminando filas no balcão.</p>
+                <span class="badge">Operador / Admin</span>
+            </div>
+            
+            <div class="card" style="margin-bottom: 20px;">
+                <h4>👥 Administrador / Coordenação</h4>
+                <p><strong>Descrição:</strong> Perfil de gestão responsável pelo patrimônio, integridade dos ativos e governança do CCT.</p>
+                <p><strong>Necessidade:</strong> Visibilidade consolidada sobre o ciclo de vida dos ativos, relatórios analíticos de uso e histórico de movimentações.</p>
+                <span class="badge">Gestor / Patrocinador</span>
+            </div>
+            
+            <div class="card">
+                <h4>👥 TI Institucional e Comunidade Acadêmica</h4>
+                <p><strong>Descrição:</strong> Sistemas internos e corpo discente indiretamente impactados pela governança dos materiais.</p>
+                <p><strong>Necessidade:</strong> Garantia de disponibilidade, conservação dos recursos em sala de aula e alinhamento de dados corporativos.</p>
+                <span class="badge">Beneficiado Indireto</span>
+            </div>
+        </section>
+        
+        <section id="solucao">
+            <h2>Solução Proposta</h2>
+            
+            <h3>Visão Geral</h3>
+            <p>O GAC estabelece uma plataforma digital centralizada com fluxos bem definidos, interligada a tags físicas nos equipamentos para automatizar as rotinas de movimentação patrimonial e checkouts rápidos.</p>
+            
+            <div class="highlight">
+                <ul>
+                    <li>✅ Eliminação total de livros de atas e registros em papel.</li>
+                    <li>✅ Validação instantânea de posse por meio de identificadores físicos.</li>
+                    <li>✅ Histórico detalhado contendo data, hora e responsável por cada transação.</li>
+                    <li>✅ Checklists técnicos obrigatórios para controle estruturado de avarias.</li>
+                    <li>✅ Redução expressiva do tempo gasto em filas por professores e atendentes.</li>
+                    <li>✅ Geração automática de relatórios estratégicos para a Direção do CCT.</li>
+                </ul>
+            </div>
+            
+            <h3>Características Principais</h3>
+            <p><strong>Tecnologia:</strong> Plataforma híbrida composta por Interface Mobile (Android/iOS) e Dashboard Web/Desktop.</p>
+            <p><strong>Autenticação:</strong> Login institucional integrado para professores, funcionários e gestores.</p>
+            <p><strong>Rastreabilidade:</strong> Vinculação física imediata através de tecnologias de aproximação NFC e/ou escaneamento de QR Code.</p>
+            <p><strong>Escalabilidade:</strong> Arquitetura preparada para expansão do catálogo de itens e inclusão de novos blocos ou centros.</p>
+            <p><strong>Integrações:</strong> Previsão de comunicação via módulos com os ecossistemas e bases de dados de TI da instituição.</p>
+        </section>
+        
+        <section id="funcionalidades">
+            <h2>Funcionalidades Principais</h2>
+            
+            <h3>1️⃣ Empréstimos Rastreáveis</h3>
+            <div class="card" style="margin-bottom: 15px;">
+                <strong>• F1.1 Retirada Ágil via Mobile</strong>
+                <p>Identificação instantânea do item por NFC ou QR Code, consulta em tempo real da disponibilidade e formalização por meio de assinatura e aceite digital do Termo de Responsabilidade.</p>
+            </div>
+            
+            <h3>2️⃣ Padronização de Recebimento</h3>
+            <div class="card" style="margin-bottom: 15px;">
+                <strong>• F2.1 Devolução com Checklist Técnico</strong>
+                <p>Conferência guiada de acessórios acoplados (cabos, controles) e estado físico geral do hardware, permitindo registro fotográfico de avarias antes de liberar o status do ativo de volta para 'disponível'.</p>
+            </div>
+            
+            <h3>3️⃣ Controle de Patrimônio e Monitoramento</h3>
+            <div class="card" style="margin-bottom: 15px;">
+                <strong>• F3.1 Gestão, Auditoria Centralizada e Cadastro</strong>
+                <p>Painel administrativo para inclusão detalhada de novos ativos (marca, modelo, número de série), agendamento preventivo de manutenções e auditoria retroativa completa de empréstimos.</p>
+            </div>
+            <div class="card" style="margin-bottom: 15px;">
+                <strong>• F4.1 Alertas, Notificações Automáticas e Relatórios</strong>
+                <p>Disparo de lembretes automáticos de prazos de devolução expirando para professores, avisos de atraso crítico para a coordenação e relatórios de métricas para suporte à tomada de decisões.</p>
+            </div>
+        </section>
+        
+        <section id="prototipo">
+             <a href="https://www.figma.com/make/AczVVeYf9eGhJRX6pylzlD/GAC-Asset-Management-App?t=7eZvnTzg6yG1eXHt-1" target="_blank"><h2>Demonstração do Protótipo</h2></a>
+            
+         <h3>Interface do Sistema</h3>
+            <p>O escopo atual foca na modelagem detalhada dos requisitos, casos de uso e prototipação das interfaces complementares previstas na arquitetura da demanda.</p>
+            
+            <div class="card" style="margin-bottom: 20px;">
+                <h4>Telas Principais</h4>
+                <div class="demo-placeholder">
+                    <img src="inventario.png" alt="" style="width: 920px;">
+                    <p style="margin-top: 10px; font-size: 14px;">Módulo focado na exibição dos ítens existentes.</p>
+                </div>
+                <div class="demo-placeholder">
+                    <img src="registrarRetirada.png" alt="" style="width: 920px;">
+                    <p style="margin-top: 10px; font-size: 14px;">Módulo compacto focado no escaneamento de etiquetas NFC/QR Code, visualização de termos e status rápido de posse do item.</p>
+                </div>
+                
+                <div class="demo-placeholder">
+                   <img src="registrarDevolucao.png" alt="" style="width: 920px;">
+                    <p style="margin-top: 10px; font-size: 14px;">Interface desktop otimizada para recepção, exibindo fila de pendências, execução de checklists de devolução e consulta rápida ao inventário.</p>
+                </div>
+                
+                <div class="demo-placeholder">
+                    <img src="adm].png" alt="" style="width: 920px;">
+                    <p style="margin-top: 10px; font-size: 14px;">Módulo de administração profunda com filtros de cadastrar equipamento, relatórios, manutenção e notificações.</p>
+                </div>
+            </div>
+            
+            <h3>Modelagem Estrutural (UML)</h3>
+            <p>A especificação do projeto de extensão compreende a engenharia de software reversa e direta mapeada através dos seguintes diagramas:</p>
+            <ul>
+                <li><strong>Diagrama de Casos de Uso:</strong> Mapeamento de Login, Disponibilidade, Retirada, Assinatura Digital, Devolução, Checklist, Cadastro, Relatórios e Manutenção.</li>
+                <li><strong>Diagrama de Componentes:</strong> Separação modular da Interface Móvel, Sistema Web e Barramento de Integração de TI.</li>
+                <li><strong>Diagrama de Implantação:</strong> Distribuição física entre os smartphones dos docentes, desktops da recepção e servidores de rede locais do CCT.</li>
+            </ul>
+            
+            <div class="highlight">
+                <strong>Foco do Projeto:</strong> Engenharia de Requisitos, Modelagem Comportamental UML e Protótipos de Alta Fidelidade para validação com usuários reais.
+            </div>
+        </section>
+        
+        <section id="beneficios">
+            <h2>Benefícios e Impacto</h2>
+            
+            <h3>Para Professores do CCT</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>⚡ Agilidade Extrema</h4>
+                    <p>Retirada imediata direto no balcão sem burocracias de assinaturas físicas em livros manuais.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>🔒 Segurança Jurídica</h4>
+                    <p>Garantia de baixa automática de responsabilidade sobre o ativo assim que o checklist técnico é fechado.</p>
+                </div>
+            </div>
+            
+            <h3>Para a Equipe Operacional e Gestão</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>📉 Mitigação de Perdas</h4>
+                    <p>Redução drástica do sumiço de adaptadores e controles através da amarração rigorosa da posse do item.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>🛠️ Manutenção Preventiva</h4>
+                    <p>Acompanhamento sistêmico da saúde do hardware, minimizando surpresas de mau funcionamento em plena aula.</p>
+                </div>
+            </div>
+            
+            <h3>Impacto Geral</h3>
+            <div class="highlight">
+                <p><strong>Patrimônio Protegido:</strong> Transparência absoluta na gestão e preservação do ecossistema físico e tecnológico de suporte acadêmico.</p>
+                <p style="margin-top: 10px;"><strong>Eficiência de Processos:</strong> Substituição total de fluxos informais ou baseados em papéis por fluxogramas digitais auditáveis.</p>
+            </div>
+        </section>
+        
+        <section style="background-color: #EBF8FF; border-left: 5px solid #2B6CB0;">
+            <h2>Próximos Passos</h2>
+            <ul>
+                <li><strong>Detalhamento de Casos de Uso:</strong> Documentar os fluxos principais e alternativos de cada um dos 10 casos de uso listados no mapeamento UML.</li>
+                <li><strong>Wireframes e Fluxo de Telas:</strong> Iniciar a arquitetura de informação visual focada na usabilidade da Interface Mobile para os professores.</li>
+                <li><strong>Definição de Atributos das Tags:</strong> Especificar o modelo de dados ideal para gravação e leitura nas etiquetas físicas (QR Code / NFC).</li>
+                <li><strong>Validação com Stakeholders:</strong> Reunir com a Equipe do CCT para homologar o checklist técnico planejado para a devolução.</li>
+                <li><strong>Refinamento de Requisitos:</strong> Consolidar os requisitos não-funcionais ligados à conectividade local de rede necessária na recepção.</li>
+            </ul>
+        </section>
+    </div>
+    
+    <footer>
+        <div>
+            <div style="text-align: left; flex: 1; min-width: 300px;">
+                <p><strong>GAC - Gestão de Ativos do CCT</strong></p>
+                <p>Projeto de Extensão — Disciplina: Requisitos e Modelagem de Sistemas</p>
+                <p style="margin-top: 10px; font-size: 12px; opacity: 0.8;">© 2026 - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        const paleta = {
+            corPrincipal: '#2B6CB0',
+            corPrincipalEscura: '#1A365D',
+            corSecundaria: '#4299E1',
+            corSecundariaClara: '#EBF8FF',
+            corFundoCards: '#F7FAFC'
+        };
+    </script>
+</body>
+</html>
